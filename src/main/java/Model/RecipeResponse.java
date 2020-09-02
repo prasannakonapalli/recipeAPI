@@ -2,7 +2,7 @@ package Model;
 
 import java.util.List;
 
-public class RecipeReponse {
+public class RecipeResponse {
 
 
 	private String q;
@@ -10,10 +10,10 @@ public class RecipeReponse {
 	
 	
 	
-	public RecipeReponse() {
+	public RecipeResponse() {
 		super();
 	}
-	public RecipeReponse(String q, List<Diet> hits) {
+	public RecipeResponse(String q, List<Diet> hits) {
 		super();
 		this.q = q;
 		this.hits = hits;
