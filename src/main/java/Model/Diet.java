@@ -2,7 +2,11 @@ package Model;
 
 public class Diet {
 
-	private RecipeReponse recipe; 
+
+	
+
+	private Recipe recipe; 
+
 	
 	
 	
