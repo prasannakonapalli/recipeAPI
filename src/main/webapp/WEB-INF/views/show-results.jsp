@@ -59,9 +59,17 @@
 							</c:url>
 							
 							
-							 <a href="<c:url value="${url}" ></c:url>" > Internal Link </a></td></tr>
+							 <a href="<c:url value="${url}" ></c:url>" > Internal Link </a></td>
 							
-							<td><a href="">Add Favorites</a></td>
+							<td>
+							
+							<c:url value="/addFavorite" var="url">
+							  <c:param name="recipeId" value="${recipe.uri}" />							  
+							</c:url>
+							
+							<a href="<c:url value="${url}" ></c:url>">Add Favorites</a>
+							
+							</td>
 						<tr>
 					</c:forEach>
 				</table>

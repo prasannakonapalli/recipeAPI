@@ -37,7 +37,7 @@
 
 			<div class="form-group">
 				<div class="form-group mx-sm-3 mb-2">
-					<label>Search Text:</label> <input type="text" name="text"
+					<label>Search Text:</label> <input type="text" name="searchText"
 						class="form-control" required />
 				</div>
 				<br>

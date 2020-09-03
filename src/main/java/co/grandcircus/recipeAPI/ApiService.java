@@ -1,5 +1,6 @@
 package co.grandcircus.recipeAPI;
 
+import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -19,6 +20,11 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+<<<<<<< HEAD
+=======
+import org.springframework.web.util.UriComponentsBuilder;
+
+>>>>>>> 3bd9d56f7c9d374b312bb2176a14b705eba79040
 import Model.Diet;
 import Model.Recipe;
 import Model.RecipeResponse;
@@ -28,9 +34,9 @@ import Model.RecipeResponse;
 public class ApiService {
 	private RestTemplate rt;
 	@Value("${api-id}")
-	private String apiId;
+	public String apiId;
 	@Value("${api-key}")
-	private String apiKey;
+	public String apiKey;
 
 	{
 	ClientHttpRequestInterceptor interceptor = (request, body, execution) -> {
@@ -68,11 +74,32 @@ public class ApiService {
 	}
 	
 	public  List<Recipe> getRecipeById(String uri) { 
+		
 		//uri="http://www.edamam.com/ontologies/edamam.owl#recipe_1b6dfeaf0988f96b187c7c9bb69a14fa";
+<<<<<<< HEAD
 		uri=URLEncoder.encode(uri);
 		System.out.println("uri: "+uri);
+=======
 		
-		String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
+		List<Recipe> recipeLst=new ArrayList<Recipe>();
+		
+		//System.out.println("uri: "+uri);
+		uri=URLEncoder.encode(uri, Charset.defaultCharset());
+		//System.out.println("uri: "+uri);
+		 
+>>>>>>> 3bd9d56f7c9d374b312bb2176a14b705eba79040
+		
+		UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://api.edamam.com/search");
+		b.queryParam("r", uri);
+		b.queryParam("app_id", "8295024f");
+		b.queryParam("app_key", "cccdf6a4ef22b03e05f18f9bbf3d1eb4");
+		URI url = b.build().toUri();
+		Recipe[] response = rt.getForObject(url, Recipe[].class);
+		recipeLst= Arrays.asList(response); 
+
+		
+		
+ //	String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
 //		
 //		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
 //		//Add the Jackson Message converter
@@ -86,17 +113,17 @@ public class ApiService {
 		
 		
 
-		List<Recipe> recipeLst=new ArrayList<Recipe>();
+		
 		// Recipe[] recipe = new ArrayList<Recipe>();
 		 // Recipe[] recipe= {};
 		// Recipe[] recipe= new Recipe[];
 		// Recipe recipe[]; 
 		 
-		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
-		  System.out.println("responsddd"+recipe.length);
-		  recipeLst= Arrays.asList(recipe);
-		  
-		    
+//		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
+//		  System.out.println("responsddd"+recipe.length);
+//		  recipeLst= Arrays.asList(recipe);
+//		  
+		     
 		//recipe.add(r);
 		return recipeLst;
 		
