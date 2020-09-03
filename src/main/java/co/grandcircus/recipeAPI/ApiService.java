@@ -44,9 +44,13 @@ public class ApiService {
 
 	public RecipeResponse getRecipes(String text, String cals, String diet,String recordCount) {
 
+		//insert url link to connect API
 		String url="https://api.edamam.com/search?q={text}&app_id={apiId}&app_key={apiKey}&from=0&to={recordCount}&";
 		RecipeResponse response=null;
 		
+		
+		//create if/else state to produce response
+		//search result should not be restricted to needing other filters 
 		if( (cals !=null && !cals.isEmpty()) && (diet !=null && !diet.isEmpty()) ) {
 			url=url+"calories={cals}&diet={diet}";
 			 response = rt.getForObject(url, RecipeResponse.class, text,apiId,apiKey,recordCount, cals,diet);
@@ -70,6 +74,7 @@ public class ApiService {
 
 	}
 	
+	//create method to return list of recipes 
 	public  List<Recipe> getRecipeById(String uri) { 
 		
 		//uri="http://www.edamam.com/ontologies/edamam.owl#recipe_1b6dfeaf0988f96b187c7c9bb69a14fa";
@@ -95,7 +100,7 @@ public class ApiService {
 //		recipeLst= Arrays.asList(response); 
 
 		
-		
+		//
   	String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
 //		
 //		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        

@@ -23,13 +23,14 @@ import co.grandcircus.recipeAPI.Entity.RecipeEntity;
 @Controller
 public class RecipeController {
 
+	
+	//declare variables per class to create objects
 	@Autowired
 	ApiService apiServ;
 
 	@Autowired
 	RecipeDao recipeDao;
 	
-
 	@Autowired
 	private HttpSession session;
 
@@ -48,10 +49,13 @@ public class RecipeController {
 	public String showResults(@RequestParam String searchText, @RequestParam(required = false) String cals,
 			@RequestParam(required = false) String diet, Model model, @RequestParam String recordCount) {
 
+		//declare object for RecipeResponse
 		RecipeResponse response;
 
 		response = apiServ.getRecipes(searchText, cals, diet, recordCount); 
 
+		
+		//create if/else statement to direct response 
 		if (response != null && response.getHits() != null) {
 			List<Diet> HitsData = response.getHits();
  

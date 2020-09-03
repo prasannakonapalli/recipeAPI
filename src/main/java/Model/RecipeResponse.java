@@ -5,6 +5,7 @@ import java.util.List;
 public class RecipeResponse {
 
 
+	//need to create list of Diet
 	private String q;
 	private List<Diet> hits;
 	
