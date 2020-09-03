@@ -8,8 +8,27 @@ public class Recipe {
 	private String label; 
 	private String image; 
 	private String url; 
+	private String shareAs; 
 	private List<String> dietLabels;
+	private List<String> ingredientLines;
+	
 	private Double calories;
+	
+	
+	
+	public String getShareAs() {
+		return shareAs;
+	}
+	public void setShareAs(String shareAs) {
+		this.shareAs = shareAs;
+	}
+	public List<String> getIngredientLines() {
+		return ingredientLines;
+	}
+	public void setIngredientLines(List<String> ingredientLines) {
+		this.ingredientLines = ingredientLines;
+	}
+	
 	
 	
 	

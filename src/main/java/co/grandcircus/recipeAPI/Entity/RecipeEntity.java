@@ -12,11 +12,11 @@ import javax.persistence.Table;
 @Table(name="fav_recipe")
 public class RecipeEntity {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	private boolean isFavorite;
 	//@Id
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//private Long id;
+	private boolean isFavorite;
+	@Id
 	private String uri;
 	
 	
@@ -57,7 +57,7 @@ public class RecipeEntity {
 	}
 
 
-
+/*
 	public Long getId() {
 		return id;
 	}
@@ -71,6 +71,6 @@ public class RecipeEntity {
 	public String toString() {
 		return "RecipeEntity [id=" + id + "]";
 	}
-	
+	*/
 	
 }

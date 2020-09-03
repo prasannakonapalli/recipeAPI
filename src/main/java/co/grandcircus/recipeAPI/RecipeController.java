@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import Model.Diet;
 import Model.Recipe;
 import Model.RecipeResponse;
-import Model.SearchRecipeParameter; 
+import Model.SearchRecipeParameter;
+
 import co.grandcircus.recipeAPI.Dao.RecipeDao;
 import co.grandcircus.recipeAPI.Entity.RecipeEntity;
 
@@ -49,30 +50,24 @@ public class RecipeController {
 
 		RecipeResponse response;
 
-		response = apiServ.getRecipes(searchText, cals, diet, recordCount);
-		// response = apiServ.getRecipes(text, cals, diet);
+		response = apiServ.getRecipes(searchText, cals, diet, recordCount); 
 
 		if (response != null && response.getHits() != null) {
 			List<Diet> HitsData = response.getHits();
-
-			// System.out.println( "data:" + data.size());
+ 
 			List<Recipe> recipes = new ArrayList<Recipe>();
 			HitsData.forEach(r -> recipes.add(r.getRecipe()));
 
 			model.addAttribute("recipes", recipes);
 			
-			SearchRecipeParameter params=new SearchRecipeParameter();
+			SearchRecipeParameter params=new SearchRecipeParameter();			
 			params.setSearchText(searchText);
 			params.setCals(cals);
 			params.setDiet(diet);
 			params.setRecordCount(recordCount);
 
 			session.setAttribute("searchParameters", params);
-			
-//			model.addAttribute("searchText", searchText);
-//			model.addAttribute("cals", cals);
-//			model.addAttribute("diet", diet);
-//			model.addAttribute("recordCount", recordCount);
+			 
 
 		}
 		return "show-results";
@@ -101,6 +96,7 @@ public class RecipeController {
 		return "redirect:/showExistingResults";
 	}
 	
+	
 	@RequestMapping("/showExistingResults")
 	public String showRecipes( Model model) {
 
@@ -120,6 +116,38 @@ public class RecipeController {
 		}
 		return "show-results";
 	}
+	
+	
+	@RequestMapping("/favoriteList")
+	public String showfavoriteList( Model model) {
+		// Recipe recipe[];
+		List<String> urls =new ArrayList<String>();
+		List<Recipe> recipes = new ArrayList<>();
+		urls =  recipeDao.findByIsFavorite();		
+		
+		for (String url : urls) {
+			
+			recipes.add(apiServ.getRecipeById(url).get(0));			 
+		}
+
+		//recipe = apiServ.getRecipeById(recipeId);
+		model.addAttribute("recipes", recipes);
+		return "favorite-list";
+
+	}
+	
+	@RequestMapping("/removeFavorite")
+	public String removeFavorite(@RequestParam String recipeId, Model model) {
+
+		RecipeEntity recFav = new RecipeEntity();
+
+		recFav.setFavorite(false);
+		recFav.setUri(recipeId);
+		recipeDao.save(recFav);
+		return "redirect:/favoriteList";
+	}
+
+
 	
 //	private getRecipeData() {
 //		RecipeResponse response;

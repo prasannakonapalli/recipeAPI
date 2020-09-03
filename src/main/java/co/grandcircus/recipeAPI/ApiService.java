@@ -86,17 +86,17 @@ public class ApiService {
 		 
 
 		
-		UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://api.edamam.com/search");
-		b.queryParam("r", uri);
-		b.queryParam("app_id", "8295024f");
-		b.queryParam("app_key", "cccdf6a4ef22b03e05f18f9bbf3d1eb4");
-		URI url = b.build().toUri();
-		Recipe[] response = rt.getForObject(url, Recipe[].class);
-		recipeLst= Arrays.asList(response); 
+//		UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://api.edamam.com/search");
+//		b.queryParam("r", uri);
+//		b.queryParam("app_id", "8295024f");
+//		b.queryParam("app_key", "cccdf6a4ef22b03e05f18f9bbf3d1eb4");
+//		URI url = b.build().toUri();
+//		Recipe[] response = rt.getForObject(url, Recipe[].class);
+//		recipeLst= Arrays.asList(response); 
 
 		
 		
- //	String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
+  	String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
 //		
 //		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
 //		//Add the Jackson Message converter
@@ -116,10 +116,10 @@ public class ApiService {
 		// Recipe[] recipe= new Recipe[];
 		// Recipe recipe[]; 
 		 
-//		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
-//		  System.out.println("responsddd"+recipe.length);
-//		  recipeLst= Arrays.asList(recipe);
-//		  
+		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
+		  System.out.println("responsddd"+recipe.length);
+		  recipeLst= Arrays.asList(recipe);
+		  
 		     
 		//recipe.add(r);
 		return recipeLst;

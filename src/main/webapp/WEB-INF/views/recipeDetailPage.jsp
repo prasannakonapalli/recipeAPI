@@ -23,43 +23,37 @@
 			<c:when test="${recipe!=null}">
 				<div>
 
-					<h4>
-						Recipe Detail Page
-						
-					</h4>
+					<h3>Recipe Detail Page</h3>
 				</div>
 				<br>
-				<table class="table">
+				<table class="table"> 
 
-					<tr class="jumbotron">
-						<th>Image</th>
-						<th>Food</th>
-						<th>Calories</th>
-						<th>Diet</th>
-						<th>Original Url</th>
-						<th>Internal Url</th>
-						<th>Bookmarked</th>
+					<tr>
+						<td><img alt="No image" src=<c:out value="${recipe.image}" />>
+							<strong><c:out value="${recipe.label}" /></strong></td>
+
 					</tr>
-					
-						<tr>
 
+					<tr>
+						<td><strong>ShareAs:</strong> 
+						
+						<a href="<c:url value="${recipe.shareAs}" ></c:url>">
+						<c:out value="${recipe.shareAs}" /></a>
+						</td>
 
-							<td><img alt="No image"
-								src=<c:out value="${recipe.image}" />></td>
-							<td><c:out value="${recipe.label}" /></td>
-							<td><c:out value="${recipe.calories}" /></td>
-							<td><c:out value="${recipe.dietLabels.toString()}" /></td>
-							<td><c:url var="url" value="${recipe.url}" /> <a
-								href="${url}">Link</a></td>
-							
-							
-						<tr>
-					
+					</tr>
+
+					<tr>
+						<td><strong>Ingredients:</strong> <c:out value="${recipe.ingredientLines}" />
+						</td>
+
+					</tr>
+
 				</table>
 				<br>
 
 				<div>
-					<a href="/">Change Search</a>
+					<a href="/showExistingResults">Back to Results</a>
 				</div>
 				<br>
 			</c:when>
