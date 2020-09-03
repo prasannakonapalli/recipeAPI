@@ -70,9 +70,13 @@ public class ApiService {
 	}
 	
 	public  List<Recipe> getRecipeById(String uri) { 
+		
 		//uri="http://www.edamam.com/ontologies/edamam.owl#recipe_1b6dfeaf0988f96b187c7c9bb69a14fa";
+		
+		
+		//System.out.println("uri: "+uri);
 		uri=URLEncoder.encode(uri, Charset.defaultCharset());
-		System.out.println("uri: "+uri);
+		//System.out.println("uri: "+uri);
 		
 		String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
 //		

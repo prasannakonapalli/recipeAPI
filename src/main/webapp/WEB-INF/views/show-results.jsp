@@ -59,7 +59,7 @@
 							</c:url>
 							
 							
-							 <a href="<c:url value="${url}" ></c:url>" > Internal Link </a></td></tr>
+							 <a href="<c:url value="${url}" ></c:url>" > Internal Link </a></td>
 							
 							<td><a href="">Add Favorites</a></td>
 						<tr>
