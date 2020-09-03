@@ -58,8 +58,8 @@
 							  <c:param name="recipeId" value="${recipe.uri}" />
 							</c:url>
 							
-							 <a href="${url}">
-							 Internal Link</a></td>
+							
+							 <a href="<c:url value="${url}" ></c:url>" > Internal Link </a></td></tr>
 							
 							<td><a href="">Add Favorites</a></td>
 						<tr>
