@@ -9,8 +9,9 @@ import Model.Recipe;
 import co.grandcircus.recipeAPI.Entity.RecipeEntity;
 
 
-
+//extend JpaRepository for Hibernate
 public interface RecipeDao extends JpaRepository<RecipeEntity, String>{
+	
 	
 	@Query("SELECT Distinct uri FROM RecipeEntity WHERE  isFavorite=true")
 	List<String> findByIsFavorite();
