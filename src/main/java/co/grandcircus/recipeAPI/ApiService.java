@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
@@ -20,7 +19,6 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import Model.Diet;
 import Model.Recipe;
 import Model.RecipeResponse;
@@ -71,7 +69,7 @@ public class ApiService {
 	
 	public  List<Recipe> getRecipeById(String uri) { 
 		//uri="http://www.edamam.com/ontologies/edamam.owl#recipe_1b6dfeaf0988f96b187c7c9bb69a14fa";
-		uri=URLEncoder.encode(uri, Charset.defaultCharset());
+		uri=URLEncoder.encode(uri);
 		System.out.println("uri: "+uri);
 		
 		String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
