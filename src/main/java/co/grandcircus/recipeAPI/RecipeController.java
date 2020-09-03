@@ -99,7 +99,7 @@ public class RecipeController {
 	
 	@RequestMapping("/showExistingResults")
 	public String showRecipes( Model model) {
-
+		// new object of RecipeResponse
 		RecipeResponse response;
 
 		SearchRecipeParameter params = (SearchRecipeParameter) session.getAttribute("searchParameters");
