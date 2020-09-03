@@ -20,11 +20,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-<<<<<<< HEAD
-=======
 import org.springframework.web.util.UriComponentsBuilder;
 
->>>>>>> 3bd9d56f7c9d374b312bb2176a14b705eba79040
 import Model.Diet;
 import Model.Recipe;
 import Model.RecipeResponse;
@@ -76,18 +73,18 @@ public class ApiService {
 	public  List<Recipe> getRecipeById(String uri) { 
 		
 		//uri="http://www.edamam.com/ontologies/edamam.owl#recipe_1b6dfeaf0988f96b187c7c9bb69a14fa";
-<<<<<<< HEAD
-		uri=URLEncoder.encode(uri);
+
+//		uri=URLEncoder.encode(uri);
 		System.out.println("uri: "+uri);
-=======
+
 		
 		List<Recipe> recipeLst=new ArrayList<Recipe>();
 		
 		//System.out.println("uri: "+uri);
-		uri=URLEncoder.encode(uri, Charset.defaultCharset());
+//		uri=URLEncoder.encode(uri, Charset.defaultCharset());
 		//System.out.println("uri: "+uri);
 		 
->>>>>>> 3bd9d56f7c9d374b312bb2176a14b705eba79040
+
 		
 		UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://api.edamam.com/search");
 		b.queryParam("r", uri);
