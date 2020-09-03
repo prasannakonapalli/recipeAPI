@@ -8,7 +8,7 @@ public class Recipe {
 	private String label; 
 	private String image; 
 	private String url; 
-	private List dietLabels;
+	private List<String> dietLabels;
 	private Double calories;
 	
 	
@@ -16,7 +16,7 @@ public class Recipe {
 	public Recipe() {
 		super();
 	}
-	public Recipe(String uri, String label, String image, String url, List dietLabels, Double calories) {
+	public Recipe(String uri, String label, String image, String url, List<String> dietLabels, Double calories) {
 		super();
 		this.uri = uri;
 		this.label = label;
@@ -49,10 +49,10 @@ public class Recipe {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public List getDietLabels() {
+	public List<String> getDietLabels() {
 		return dietLabels;
 	}
-	public void setDietLabels(List dietLabels) {
+	public void setDietLabels(List<String> dietLabels) {
 		this.dietLabels = dietLabels;
 	}
 	public Double getCalories() {
