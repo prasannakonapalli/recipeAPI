@@ -11,7 +11,7 @@ import co.grandcircus.recipeAPI.Entity.RecipeEntity;
 public interface RecipeDao extends JpaRepository<RecipeEntity, Long>{
 	
 	
-	List<RecipeEntity> findAllById(String Id);
+
 	
 
 }
