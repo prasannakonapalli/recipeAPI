@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import Model.Diet;
 import Model.Recipe;
-import Model.RecipeResponse;
+import Model.RecipeResponse; 
+import co.grandcircus.recipeAPI.Dao.RecipeDao;
+import co.grandcircus.recipeAPI.Entity.RecipeEntity;
 
 @Controller
 public class RecipeController {
 
 	@Autowired
 	ApiService apiServ;
+	
+	@Autowired
+	RecipeDao recipeDao;
 
 	@RequestMapping("/")
 	public String home() {
@@ -30,7 +35,7 @@ public class RecipeController {
 		return "search-recipe";
 	}
  
-	@PostMapping("/show-results")
+	@RequestMapping("/show-results")
 
 	public String showResults(@RequestParam String text, 
 			@RequestParam(required=false) String cals, 
@@ -69,9 +74,19 @@ public class RecipeController {
 		Recipe recipe; 
 		recipe = apiServ.getRecipeById(recipeId).get(0);
 		model.addAttribute("recipe", recipe);
-		return "recipeDetailPage";
-	
+		return "recipeDetailPage";	
 		
+	}
+	
+	@RequestMapping("/addFavorite")
+	public String addFavorite(@RequestParam String recipeId,Model model) { 
+		
+		RecipeEntity recFav=new RecipeEntity();
+		
+		recFav.setFavorite(true);
+		recFav.setUri(recipeId);
+		recipeDao.save(recFav);  
+		return "redirect:/show-results";
 	}
 
 }

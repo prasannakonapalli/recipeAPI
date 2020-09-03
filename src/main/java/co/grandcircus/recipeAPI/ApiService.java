@@ -20,6 +20,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import Model.Diet;
 import Model.Recipe;
@@ -77,6 +78,15 @@ public class ApiService {
 		//System.out.println("uri: "+uri);
 		uri=URLEncoder.encode(uri, Charset.defaultCharset());
 		//System.out.println("uri: "+uri);
+		
+		/*UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://api.edamam.com/search");
+		b.queryParam("r", uri);
+		b.queryParam("app_id", appId);
+		b.queryParam("app_key", appKey);
+		URI uri = b.build().toUri();*/
+Recipe[] response = rt.getForObject(uri, Recipe[].class);
+
+
 		
 		String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
 //		
