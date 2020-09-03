@@ -8,8 +8,6 @@ public class RecipeResponse {
 	private String q;
 	private List<Diet> hits;
 	
-	
-	
 	public RecipeResponse() {
 		super();
 	}
