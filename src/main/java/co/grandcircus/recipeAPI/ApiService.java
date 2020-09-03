@@ -1,5 +1,6 @@
 package co.grandcircus.recipeAPI;
 
+import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -31,9 +32,9 @@ import Model.RecipeResponse;
 public class ApiService {
 	private RestTemplate rt;
 	@Value("${api-id}")
-	private String apiId;
+	public String apiId;
 	@Value("${api-key}")
-	private String apiKey;
+	public String apiKey;
 
 	{
 	ClientHttpRequestInterceptor interceptor = (request, body, execution) -> {
@@ -74,21 +75,24 @@ public class ApiService {
 		
 		//uri="http://www.edamam.com/ontologies/edamam.owl#recipe_1b6dfeaf0988f96b187c7c9bb69a14fa";
 		
+		List<Recipe> recipeLst=new ArrayList<Recipe>();
 		
 		//System.out.println("uri: "+uri);
 		uri=URLEncoder.encode(uri, Charset.defaultCharset());
 		//System.out.println("uri: "+uri);
+		 
 		
-		/*UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://api.edamam.com/search");
+		UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://api.edamam.com/search");
 		b.queryParam("r", uri);
-		b.queryParam("app_id", appId);
-		b.queryParam("app_key", appKey);
-		URI uri = b.build().toUri();*/
-Recipe[] response = rt.getForObject(uri, Recipe[].class);
-
+		b.queryParam("app_id", "8295024f");
+		b.queryParam("app_key", "cccdf6a4ef22b03e05f18f9bbf3d1eb4");
+		URI url = b.build().toUri();
+		Recipe[] response = rt.getForObject(url, Recipe[].class);
+		recipeLst= Arrays.asList(response); 
 
 		
-		String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
+		
+ //	String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
 //		
 //		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
 //		//Add the Jackson Message converter
@@ -102,17 +106,17 @@ Recipe[] response = rt.getForObject(uri, Recipe[].class);
 		
 		
 
-		List<Recipe> recipeLst=new ArrayList<Recipe>();
+		
 		// Recipe[] recipe = new ArrayList<Recipe>();
 		 // Recipe[] recipe= {};
 		// Recipe[] recipe= new Recipe[];
 		// Recipe recipe[]; 
 		 
-		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
-		  System.out.println("responsddd"+recipe.length);
-		  recipeLst= Arrays.asList(recipe);
-		  
-		    
+//		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
+//		  System.out.println("responsddd"+recipe.length);
+//		  recipeLst= Arrays.asList(recipe);
+//		  
+		     
 		//recipe.add(r);
 		return recipeLst;
 		

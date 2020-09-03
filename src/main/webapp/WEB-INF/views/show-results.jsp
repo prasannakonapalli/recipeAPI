@@ -64,7 +64,7 @@
 							<td>
 							
 							<c:url value="/addFavorite" var="url">
-							  <c:param name="recipeId" value="${recipe.uri}" />
+							  <c:param name="recipeId" value="${recipe.uri}" />							  
 							</c:url>
 							
 							<a href="<c:url value="${url}" ></c:url>">Add Favorites</a>

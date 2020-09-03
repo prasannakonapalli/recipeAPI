@@ -16,6 +16,7 @@ public class RecipeEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private boolean isFavorite;
+	//@Id
 	private String uri;
 	
 	
