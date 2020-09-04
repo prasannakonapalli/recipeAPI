@@ -36,8 +36,8 @@
 						<th>Food</th>
 						<th>Calories</th>
 						<th>Diet</th>
-						<th>Original Url</th>
-						<th>Internal Url</th>
+						<th>Original Source</th>
+						<th>Internal Source</th>
 						<th>Bookmarked</th>
 					</tr>
 					<c:forEach items="${recipes}" var="recipe">
@@ -47,8 +47,16 @@
 							<td><img alt="No image"
 								src=<c:out value="${recipe.image}" />></td>
 							<td><c:out value="${recipe.label}" /></td>
-							<td><c:out value="${recipe.calories}" /></td>
-							<td><c:out value="${recipe.dietLabels.toString()}" /></td>
+							<td>			
+							<fmt:formatNumber type="number" value="${recipe.calories}"   minFractionDigits ="3"/>
+							</td>
+							<td>
+							<c:forEach items="${recipe.dietLabels}" var="dietLabel">
+							<c:set var="diet" value="${dietLabel}" />
+							 ${diet}<br>
+							</c:forEach> 
+							
+							</td>
 							<td><c:url var="url" value="${recipe.url}" /> <a
 								href="${url}">Link</a></td>
 							
@@ -56,6 +64,7 @@
 							
 							<c:url value="/recipeById" var="url">
 							  <c:param name="recipeId" value="${recipe.uri}" />
+							  <c:param name="fromResultPage" value="1" />
 							</c:url>
 							
 							
@@ -67,7 +76,8 @@
 							  <c:param name="recipeId" value="${recipe.uri}" />							  
 							</c:url>
 							
-							<a class="btn btn-primary" href="<c:url value="${url}" ></c:url>">Add Favorites</a>
+							<a class="btn ${recipe.bookMarked==true?'btn-secondary disabled-btn':'btn-primary'}"
+							 href="<c:url value="${url}" ></c:url>">Add Favorites</a>
 							
 							</td>
 							 

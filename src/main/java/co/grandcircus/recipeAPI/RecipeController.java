@@ -23,14 +23,13 @@ import co.grandcircus.recipeAPI.Entity.RecipeEntity;
 @Controller
 public class RecipeController {
 
-	
-	//declare variables per class to create objects
+	// declare variables per class to create objects
 	@Autowired
 	ApiService apiServ;
 
 	@Autowired
 	RecipeDao recipeDao;
-	
+
 	@Autowired
 	private HttpSession session;
 
@@ -49,42 +48,28 @@ public class RecipeController {
 	public String showResults(@RequestParam String searchText, @RequestParam(required = false) String cals,
 			@RequestParam(required = false) String diet, Model model, @RequestParam String recordCount) {
 
-		//declare object for RecipeResponse
-		RecipeResponse response;
+		SearchRecipeParameter params = new SearchRecipeParameter();
+		params.setSearchText(searchText);
+		params.setCals(cals);
+		params.setDiet(diet);
+		params.setRecordCount(recordCount);
+		session.setAttribute("searchParameters", params);
 
-		response = apiServ.getRecipes(searchText, cals, diet, recordCount); 
+		List<Recipe> recipes = getRecipeDataFromApi(searchText, cals, diet, recordCount);
+		model.addAttribute("recipes", recipes);
+		model.addAttribute("searchText", searchText);
 
-		
-		//create if/else statement to direct response 
-		if (response != null && response.getHits() != null) {
-			List<Diet> HitsData = response.getHits();
- 
-			List<Recipe> recipes = new ArrayList<Recipe>();
-			HitsData.forEach(r -> recipes.add(r.getRecipe()));
-
-			model.addAttribute("recipes", recipes);
-			
-			SearchRecipeParameter params=new SearchRecipeParameter();			
-			params.setSearchText(searchText);
-			params.setCals(cals);
-			params.setDiet(diet);
-			params.setRecordCount(recordCount);
-
-			session.setAttribute("searchParameters", params);
-			 
-
-		}
 		return "show-results";
 	}
 
-	
-
 	@RequestMapping("/recipeById")
-	public String showRecipeById(@RequestParam String recipeId, Model model) {
+	public String showRecipeById(@RequestParam String recipeId,
+			@RequestParam(defaultValue="0") String fromResultPage, Model model) {
 		// Recipe recipe[];
 		Recipe recipe;
 		recipe = apiServ.getRecipeById(recipeId).get(0);
 		model.addAttribute("recipe", recipe);
+		model.addAttribute("fromResultPage", fromResultPage);
 		return "recipeDetailPage";
 
 	}
@@ -99,47 +84,39 @@ public class RecipeController {
 		recipeDao.save(recFav);
 		return "redirect:/showExistingResults";
 	}
-	
-	
+
 	@RequestMapping("/showExistingResults")
-	public String showRecipes( Model model) {
-		// new object of RecipeResponse
-		RecipeResponse response;
+	public String showRecipes(Model model) {
 
 		SearchRecipeParameter params = (SearchRecipeParameter) session.getAttribute("searchParameters");
-		response = apiServ.getRecipes(params.getSearchText(), params.getCals(), params.getDiet(),
+
+		List<Recipe> recipes = getRecipeDataFromApi(params.getSearchText(), params.getCals(), params.getDiet(),
 				params.getRecordCount());
+		model.addAttribute("recipes", recipes);
+		model.addAttribute("searchText", params.getSearchText());
 
-		if (response != null && response.getHits() != null) {
-			List<Diet> HitsData = response.getHits();
 
-			List<Recipe> recipes = new ArrayList<Recipe>();
-			HitsData.forEach(r -> recipes.add(r.getRecipe()));
-			model.addAttribute("recipes", recipes);
-
-		}
 		return "show-results";
 	}
-	
-	
+
 	@RequestMapping("/favoriteList")
-	public String showfavoriteList( Model model) {
+	public String showfavoriteList(Model model) {
 		// Recipe recipe[];
-		List<String> urls =new ArrayList<String>();
+		List<String> urls = new ArrayList<String>();
 		List<Recipe> recipes = new ArrayList<>();
-		urls =  recipeDao.findByIsFavorite();		
-		
+		urls = recipeDao.findByIsFavorite();
+
 		for (String url : urls) {
-			
-			recipes.add(apiServ.getRecipeById(url).get(0));			 
+
+			recipes.add(apiServ.getRecipeById(url).get(0));
 		}
 
-		//recipe = apiServ.getRecipeById(recipeId);
+		// recipe = apiServ.getRecipeById(recipeId);
 		model.addAttribute("recipes", recipes);
 		return "favorite-list";
 
 	}
-	
+
 	@RequestMapping("/removeFavorite")
 	public String removeFavorite(@RequestParam String recipeId, Model model) {
 
@@ -151,4 +128,49 @@ public class RecipeController {
 		return "redirect:/favoriteList";
 	}
 
+<<<<<<< HEAD
+=======
+	private List<Recipe> getRecipeDataFromApi(String searchText, String cals, String diet, String recordCount) {
+
+		// new object of RecipeResponse
+		RecipeResponse response;
+		response = apiServ.getRecipes(searchText, cals, diet, recordCount);
+		
+		
+
+		if (response != null && response.getHits() != null) {
+			 
+			List<RecipeEntity> fav_Recipes=new ArrayList<RecipeEntity>();		
+			fav_Recipes=recipeDao.findAll();
+			
+			List<Diet> HitsData = response.getHits();
+			List<Recipe> recipes = new ArrayList<Recipe>();
+			//HitsData.forEach(r -> recipes.add(r.getRecipe()));
+			
+			for (Diet diets : HitsData) {
+				Recipe recipe=diets.getRecipe();
+				
+				for (RecipeEntity favs : fav_Recipes) {
+					if(favs.getUri().equalsIgnoreCase(recipe.getUri()) ) {
+						
+//						System.out.println(favs.getUri());
+//						System.out.println(favs.isFavorite());
+						
+						recipe.setBookMarked(favs.isFavorite());
+						break;
+					}
+					else {
+						recipe.setBookMarked(false);
+					}
+				}
+				
+				recipes.add(recipe);
+			}
+			
+			return recipes;
+		}
+		return null;
+	}
+
+>>>>>>> b96944c42ee2363ce45bd7ac1da2d00745c3734e
 }

@@ -80,21 +80,34 @@ public class ApiService {
 
 //		uri=URLEncoder.encode(uri);
 		System.out.println("uri: "+uri);
-
+		System.out.println("=======================");
 		
 		List<Recipe> recipeLst=new ArrayList<Recipe>();
 
 		
   	String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
 
+<<<<<<< HEAD
+=======
+		
+		
+>>>>>>> b96944c42ee2363ce45bd7ac1da2d00745c3734e
 		 
 		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
-		  System.out.println("responsddd"+recipe.length);
+		
 		  recipeLst= Arrays.asList(recipe);
 		  
 		     
+<<<<<<< HEAD
 		//recipe.add(r);
 		return recipeLst;		
+=======
+		
+		return recipeLst;
+		
+		
+
+>>>>>>> b96944c42ee2363ce45bd7ac1da2d00745c3734e
 		
 	}
 

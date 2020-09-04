@@ -11,7 +11,14 @@ public class Recipe {
 	private String shareAs; 
 	private List<String> dietLabels;
 	private List<String> ingredientLines;
+	private boolean bookMarked;
 	
+	public boolean isBookMarked() {
+		return bookMarked;
+	}
+	public void setBookMarked(boolean bookMarked) {
+		this.bookMarked = bookMarked;
+	}
 	private Double calories;
 	
 	
