@@ -151,20 +151,4 @@ public class RecipeController {
 		return "redirect:/favoriteList";
 	}
 
-
-	
-//	private getRecipeData() {
-//		RecipeResponse response;
-//		response = apiServ.getRecipes(params.getSearchText(), params.getCals(), params.getDiet(),
-//				params.getRecordCount());
-//		if (response != null && response.getHits() != null) {
-//			List<Diet> HitsData = response.getHits();
-//
-//			List<Recipe> recipes = new ArrayList<Recipe>();
-//			HitsData.forEach(r -> recipes.add(r.getRecipe()));
-//			model.addAttribute("recipes", recipes);
-//
-//		}
-//	}
-
 }

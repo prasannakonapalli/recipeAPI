@@ -55,22 +55,5 @@ public class RecipeEntity {
 	public void setUri(String uri) {
 		this.uri = uri;
 	}
-
-
-/*
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "RecipeEntity [id=" + id + "]";
-	}
-	*/
 	
 }
