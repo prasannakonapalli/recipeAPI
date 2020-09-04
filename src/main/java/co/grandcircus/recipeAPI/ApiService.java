@@ -81,7 +81,7 @@ public class ApiService {
 
 //		uri=URLEncoder.encode(uri);
 		System.out.println("uri: "+uri);
-
+		System.out.println("=======================");
 		
 		List<Recipe> recipeLst=new ArrayList<Recipe>();
 		
@@ -116,28 +116,18 @@ public class ApiService {
 		
 
 		
-		// Recipe[] recipe = new ArrayList<Recipe>();
-		 // Recipe[] recipe= {};
-		// Recipe[] recipe= new Recipe[];
-		// Recipe recipe[]; 
+		
 		 
 		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
-		  System.out.println("responsddd"+recipe.length);
+		
 		  recipeLst= Arrays.asList(recipe);
 		  
 		     
-		//recipe.add(r);
+		
 		return recipeLst;
 		
 		
-//		 
-//		HttpHeaders headers = new HttpHeaders();  
-//		headers.setContentType(MediaType.APPLICATION_JSON);
-//		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-//		ResponseEntity<List<Recipe>> r	=rt.exchange(url,HttpMethod.GET, entity, new ParameterizedTypeReference<List<Recipe>>(){},uri,apiId,apiKey);
-//		 System.out.println("responsddd"+ r);		
-//		return  r.getBody();
-//		
+
 		
 	}
 

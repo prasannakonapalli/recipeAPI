@@ -3,3 +3,8 @@ img {
   max-width: 30%;
   height: auto;
 }
+
+.disabled-btn {
+  opacity:1.0;
+  pointer-events: none;
+}

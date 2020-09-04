@@ -44,17 +44,33 @@
 					</tr>
 
 					<tr>
-						<td><strong>Ingredients:</strong> <c:out value="${recipe.ingredientLines}" />
+						<td><strong>Ingredients:</strong> 
+						
+						<c:forEach items="${recipe.ingredientLines}" var="ingredients">
+							<c:set var="ingredient" value="${ingredients}" />
+							 ${ingredient}<br>
+							</c:forEach>  
+						
 						</td>
 
 					</tr>
 
 				</table>
 				<br>
-
-				<div>
+			<c:choose>
+			    <c:when test="${fromResultPage=='1'}">
+			       <div>
 					<a href="/showExistingResults">Back to Results</a>
+					</div> 
+			    </c:when>    
+			    <c:otherwise>
+			        <div>
+					<a href="/favoriteList">Back to Favorite List</a>
 				</div>
+			        <br />
+			    </c:otherwise>
+			</c:choose>
+				
 				<br>
 			</c:when>
 			<c:otherwise>
