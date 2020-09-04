@@ -128,8 +128,7 @@ public class RecipeController {
 		return "redirect:/favoriteList";
 	}
 
-<<<<<<< HEAD
-=======
+
 	private List<Recipe> getRecipeDataFromApi(String searchText, String cals, String diet, String recordCount) {
 
 		// new object of RecipeResponse
@@ -172,5 +171,4 @@ public class RecipeController {
 		return null;
 	}
 
->>>>>>> b96944c42ee2363ce45bd7ac1da2d00745c3734e
 }
