@@ -87,7 +87,7 @@ public class RecipeController {
 
 	@RequestMapping("/showExistingResults")
 	public String showRecipes(Model model) {
-
+		//shows existing results
 		SearchRecipeParameter params = (SearchRecipeParameter) session.getAttribute("searchParameters");
 
 		List<Recipe> recipes = getRecipeDataFromApi(params.getSearchText(), params.getCals(), params.getDiet(),
