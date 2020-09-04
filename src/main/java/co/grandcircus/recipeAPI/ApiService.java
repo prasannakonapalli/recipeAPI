@@ -77,56 +77,34 @@ public class ApiService {
 	//create method to return list of recipes 
 	public  List<Recipe> getRecipeById(String uri) { 
 		
-		//uri="http://www.edamam.com/ontologies/edamam.owl#recipe_1b6dfeaf0988f96b187c7c9bb69a14fa";
 
 //		uri=URLEncoder.encode(uri);
 		System.out.println("uri: "+uri);
 		System.out.println("=======================");
 		
 		List<Recipe> recipeLst=new ArrayList<Recipe>();
-		
-		//System.out.println("uri: "+uri);
-//		uri=URLEncoder.encode(uri, Charset.defaultCharset());
-		//System.out.println("uri: "+uri);
-		 
 
 		
-//		UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://api.edamam.com/search");
-//		b.queryParam("r", uri);
-//		b.queryParam("app_id", "8295024f");
-//		b.queryParam("app_key", "cccdf6a4ef22b03e05f18f9bbf3d1eb4");
-//		URI url = b.build().toUri();
-//		Recipe[] response = rt.getForObject(url, Recipe[].class);
-//		recipeLst= Arrays.asList(response); 
-
-		
-		//
   	String url="https://api.edamam.com/search?r={uri}&app_id={apiId}&app_key={apiKey}";
-//		
-//		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
-//		//Add the Jackson Message converter
-//		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-//
-//		// Note: here we are making this converter to process any kind of response, 
-//		// not only application/*json, which is the default behaviour
-//		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));        
-//		messageConverters.add(converter);  
-//		rt.setMessageConverters(messageConverters); 
-		
-		
+
 
 		
 		
+
 		 
 		  Recipe[] recipe = rt.getForObject(url, Recipe[].class,uri,apiId,apiKey) ;
 		
 		  recipeLst= Arrays.asList(recipe);
 		  
 		     
+
+		//recipe.add(r);
+		return recipeLst;		
+
+	
 		
-		return recipeLst;
 		
-		
+
 
 		
 	}

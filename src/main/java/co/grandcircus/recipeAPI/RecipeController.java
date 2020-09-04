@@ -128,6 +128,7 @@ public class RecipeController {
 		return "redirect:/favoriteList";
 	}
 
+
 	private List<Recipe> getRecipeDataFromApi(String searchText, String cals, String diet, String recordCount) {
 
 		// new object of RecipeResponse
